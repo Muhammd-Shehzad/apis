@@ -78,7 +78,15 @@ class Login extends StatelessWidget {
                   CustomButton(
                     title: 'Login',
                     onPressed: () {
-                      print('Login button pressed');
+                      if (model.emailController.text.isEmpty) {
+                        Utils.flashBarErrorMesage('Enter Email', context);
+                      } else if (model.passwordController.text.isEmpty) {
+                        Utils.flashBarErrorMesage('Enter password', context);
+                      } else if (model.passwordController.text.length < 6) {
+                        Utils.flashBarErrorMesage('Enter ', context);
+                      } else {
+                        print('Api hit hai');
+                      }
                     },
                     isLoading: false,
                   ),
