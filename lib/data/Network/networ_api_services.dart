@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:apis/data/Network/base_api_services.dart';
 import 'package:apis/data/app_excaption.dart';
-import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 class NetworApiServices extends BaseApiServices {
   @override
@@ -28,10 +27,9 @@ class NetworApiServices extends BaseApiServices {
     dynamic responseJson;
 
     try {
-      Response response = await post(
-        Uri.parse(url),
-        body: data,
-      ).timeout(Duration(seconds: 10));
+      Response response = await http
+          .post(Uri.parse(url), body: data)
+          .timeout(Duration(seconds: 3));
       responseJson = returnResponse(response);
     } on SocketException {
       throw FetchDataException('No Internet Connection');

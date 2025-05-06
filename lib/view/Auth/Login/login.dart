@@ -1,15 +1,23 @@
 import 'package:apis/res/Components/custom_button.dart';
 import 'package:apis/utils/utils.dart';
 import 'package:apis/view/Auth/Login/login_provider.dart';
+import 'package:apis/view_model/auth_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class Login extends StatefulWidget {
+  Login({super.key});
 
   @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  @override
   Widget build(BuildContext context) {
+    final authViewModel = Provider.of<AuthViewModel>(context);
+
     return ChangeNotifierProvider(
       create: (context) => LoginProvider(),
       child: Consumer<LoginProvider>(
@@ -85,7 +93,12 @@ class Login extends StatelessWidget {
                       } else if (model.passwordController.text.length < 6) {
                         Utils.flashBarErrorMesage('Enter ', context);
                       } else {
-                        print('Api hit hai');
+                        Map data = {
+                          'eamil': model.emailController.text.toString(),
+                          'password': model.passwordController.text.toString(),
+                        };
+                        authViewModel.login(data, context);
+                        print('API Hit');
                       }
                     },
                     isLoading: false,
