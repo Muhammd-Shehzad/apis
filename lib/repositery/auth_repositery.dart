@@ -7,10 +7,26 @@ class AuthRepositery {
 
   Future<dynamic> loginApi(data) async {
     try {
+      //here hit the api
       dynamic response = await _apiServices.getPostApiResponse(
         AppUrl.loginEndPoint,
         data,
       );
+      print(response);
+      return response;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<dynamic> signUpApi(data) async {
+    try {
+      //here hit the api
+      dynamic response = await _apiServices.getPostApiResponse(
+        AppUrl.registerApiEndPoint,
+        data,
+      );
+      print(response);
       return response;
     } catch (e) {
       throw e;

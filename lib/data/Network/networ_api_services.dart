@@ -27,9 +27,10 @@ class NetworApiServices extends BaseApiServices {
     dynamic responseJson;
 
     try {
-      Response response = await http
-          .post(Uri.parse(url), body: data)
-          .timeout(Duration(seconds: 3));
+      Response response = await post(
+        Uri.parse(url),
+        body: data,
+      ).timeout(Duration(seconds: 10));
       responseJson = returnResponse(response);
     } on SocketException {
       throw FetchDataException('No Internet Connection');

@@ -4,13 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CustomButton extends StatelessWidget {
   final String title;
   final VoidCallback? onPressed;
-  final bool isLoading;
+  final bool loading;
 
   const CustomButton({
     super.key,
     required this.title,
     this.onPressed,
-    required this.isLoading,
+    required this.loading,
   });
 
   @override
@@ -26,8 +26,8 @@ class CustomButton extends StatelessWidget {
         ),
         child: Center(
           child:
-              isLoading
-                  ? CircleAvatar()
+              loading
+                  ? CircularProgressIndicator(color: Colors.white)
                   : Text(
                     title,
                     style: TextStyle(fontSize: 20.sp, color: Colors.white),
