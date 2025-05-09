@@ -1,0 +1,85 @@
+class UserModel {
+  String? message;
+  String? token;
+  User? user;
+
+  UserModel({this.message, this.token, this.user});
+
+  UserModel.fromJson(Map<String, dynamic> json) {
+    message = json['message'];
+    token = json['token'];
+    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['message'] = this.message;
+    data['token'] = this.token;
+    if (this.user != null) {
+      data['user'] = this.user!.toJson();
+    }
+    return data;
+  }
+}
+
+class User {
+  String? id;
+  String? name;
+  String? email;
+  String? role;
+  bool? isVerified;
+  String? accountStatus;
+  Image? image;
+
+  User(
+      {this.id,
+      this.name,
+      this.email,
+      this.role,
+      this.isVerified,
+      this.accountStatus,
+      this.image});
+
+  User.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    email = json['email'];
+    role = json['role'];
+    isVerified = json['isVerified'];
+    accountStatus = json['accountStatus'];
+    image = json['image'] != null ? new Image.fromJson(json['image']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['email'] = this.email;
+    data['role'] = this.role;
+    data['isVerified'] = this.isVerified;
+    data['accountStatus'] = this.accountStatus;
+    if (this.image != null) {
+      data['image'] = this.image!.toJson();
+    }
+    return data;
+  }
+}
+
+class Image {
+  String? url;
+  String? publicId;
+
+  Image({this.url, this.publicId});
+
+  Image.fromJson(Map<String, dynamic> json) {
+    url = json['url'];
+    publicId = json['publicId'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['url'] = this.url;
+    data['publicId'] = this.publicId;
+    return data;
+  }
+}

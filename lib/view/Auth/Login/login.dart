@@ -89,7 +89,7 @@ class _LoginState extends State<Login> {
                   SizedBox(height: 20.h),
                   CustomButton(
                     title: 'Login',
-                    loading: AuthViewModel().loading,
+                    loading: authViewModel.loading,
 
                     onPressed: () {
                       if (model.emailController.text.isEmpty) {
